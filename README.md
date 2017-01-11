@@ -1,4 +1,4 @@
-# Adruino Continuous Integration Server
+# Arduino Continuous Integration Server
 ## Author: Kenneth Hancock
 
 Pretty simple server to allow mutiple people to work on one Arduino chip my uploading to a server connected to the arduino chip.
