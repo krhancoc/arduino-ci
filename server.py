@@ -7,7 +7,6 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER='files'
 ALLOWED_EXTENSIONS = set(['ino'])
-pp = Flask(__name__, static_url_path='/static')
 app = Flask(__name__, template_folder='templates', static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "WHATEVERYOUWANTBRO"
