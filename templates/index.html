@@ -1,0 +1,24 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Arduino Server</title>
+      <link rel="stylesheet" href="css/styles.css?v=1.0">
+      <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+        <h1>Please Choose *.ino file to submit to device</h1>
+        <form method="post"
+              enctype="multipart/form-data"
+              action="/submit"
+              id="ino-form">
+            <input type="file" name="ino"/>
+            <input type="submit">
+        </form>
+        <h2>{{ message }}</h2>
+    </body>
+    <script src="js/scripts.js"></script>
+</html>
