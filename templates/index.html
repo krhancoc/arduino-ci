@@ -1,22 +1,73 @@
 <!doctype html>
 
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Arduino Server</title>
-      <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-      <![endif]-->
-    </head>
-    <body>
-        <h1>Please Choose *.ino file to submit to device</h1>
-        <form method="post"
-              enctype="multipart/form-data"
-              action="/submit"
-              id="ino-form">
-            <input type="file" name="ino"/>
-            <input type="submit">
-        </form>
-        <h2>{{ message }}</h2>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Arduino Server</title>
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" media="screen,projection"/>
+    <style>
+        body {
+            background-color: #1695A3;
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+
+        }
+
+        #main {
+            width: 500px;
+            height: 200px;
+            background-color: #ACF0F2;
+            padding: 16px
+        }
+
+        #top {
+            background-color: #ACF0F2;
+            position: absolute;
+            height: 100px;
+            width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="top">
+    <h3 class="text-center">Arduino CI Tool</h3>
+</div>
+<div class="container center" id="main">
+    <h6>Please Choose .ino file to submit to device</h6>
+    <form method="post"
+          enctype="multipart/form-data"
+          action="/submit"
+          id="ino-form">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input type="file" name="ino">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <input class="btn" type="submit">
+    </form>
+    <h5>{{ message }}</h2>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="static/js/materialize.min.js"></script>
+</body>
 </html>
