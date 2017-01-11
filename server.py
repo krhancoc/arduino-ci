@@ -1,5 +1,6 @@
 import os
 import subprocess
+import logging
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
@@ -11,8 +12,9 @@ app = Flask(__name__, template_folder='templates')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = "WHATEVERYOUWANTBRO"
 
+
 def process(filename):
-    print filename
+    app.logger.debug("Calling integration.sh script with filename: " + filename)
     subprocess.call("bin/integration.sh " + filename, shell=True)
 
 # http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
@@ -22,6 +24,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
+    logging.debug("Rendering index.html template")
     return render_template('index.html')
 
 # http://flask.pocoo.org/docs/0.12/patterns/fileuploads/
@@ -29,18 +32,21 @@ def index():
 def upload_file():
     if request.method == 'POST':
         if 'ino' not in request.files:
+            app.logger.error("Non ino file attempted to be uploaded")
             return render_template('index.html',message="ERROR")
         file = request.files['ino']
         if file.filename == '':
+            app.logger.error("No filename given")
             return render_template('index.html', message="ERROR")
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            app.logger.info("File " + filename + " accepted.  Moving through to build and upload")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             process(filename)
             return render_template('index.html', message="SUCCESS")
 
 if __name__ == "__main__":
-    app.run()    
+    app.run(debug=True)    
    
 
 
