@@ -3,6 +3,8 @@
 
 Pretty simple server to allow mutiple people to work on one Arduino chip my uploading to a server connected to the arduino chip.
 
+## Not Completed Yet
+
 To run type the following from within the directory:
 
 ```bash
