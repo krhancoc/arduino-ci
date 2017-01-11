@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Arduino Server</title>
+
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
@@ -44,10 +45,12 @@
         }
     </style>
 </head>
+
 <body>
 <div id="top">
     <h3 class="text-center">Arduino CI Tool</h3>
 </div>
+
 <div class="container center" id="main">
     <h6>Please Choose .ino file to submit to device</h6>
     <form method="post"
@@ -65,8 +68,17 @@
         </div>
         <input class="btn" type="submit">
     </form>
-    <h5>{{ message }}</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 </div>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="static/js/materialize.min.js"></script>
 </body>

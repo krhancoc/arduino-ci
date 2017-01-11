@@ -33,17 +33,20 @@ def upload_file():
     if request.method == 'POST':
         if 'ino' not in request.files:
             app.logger.error("Non ino file attempted to be uploaded")
-            return render_template('index.html',message="ERROR")
+            flash('Not and INO file')
+            return redirect(url_for('index'))
         file = request.files['ino']
         if file.filename == '':
             app.logger.error("No filename given")
-            return render_template('index.html', message="ERROR")
+            flash('No file given')
+            return redirect(url_for('index'))
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             app.logger.info("File " + filename + " accepted.  Moving through to build and upload")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             process(filename)
-            return render_template('index.html', message="SUCCESS")
+            flash('Success!')
+            return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(debug=True)    
