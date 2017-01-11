@@ -7,7 +7,9 @@ Pretty simple server to allow mutiple people to work on one Arduino chip my uplo
 
 
 ## Requirements - Pre Start-up
-*Make sure you have the Arduino app installed on the system!*
+1.  Arduino App 
+2.  Python 2.7
+3.  Pip 
 
 
 ### Dialout Group
@@ -32,10 +34,10 @@ Inside the bin/ directory is a file called ino.ini, it is here you should edit s
 have.  Meaning update the model and the serial port.
 
 You can find the serial port by doing the following:
-1. Open a terminal with the Arduino chip not connected
-2. Type `df` you'll see a list of devices
-3. Now connect your device and type `df` again, inspect where it has changed - that will be the arduino device
-4. It should follow a pattern like /dev/ttyACM[0-9].  Once you it copy and past the "/dev/tty.." where the file says SERIAL\_PORT
+1.  Open a terminal with the Arduino chip not connected  
+2.  Type `df` you'll see a list of devices  
+3.  Now connect your device and type `df` again, inspect where it has changed - that will be the arduino device  
+4.  It should follow a pattern like /dev/ttyACM[0-9].  Once you it copy and past the "/dev/tty.." where the file says SERIAL\_PORT  
 ## Start-up
 To run type the following from within the directory:
 ```bash
