@@ -7,8 +7,8 @@ cd temp && ino init
 mv $FILE src/sketch.ino
 cp $ROOT/bin/ino.ini $ROOT/temp/ino.ini
 echo Copying done... calling ino build
-#ino build
-
+ino build
+ino upload
 echo Cleaning up...
 #Clean up
 cd $ROOT

@@ -48,3 +48,15 @@ pip install -r requirements.txt
 python server.py
 ```
 
+
+### Issues That Can Happen
+
+#### WiFi Library errors build process
+There was a point where the program was having problems building with Ubuntu 16.04.1 LTS where the WiFi library that came with the chip was
+causing it to error.  Delete or move this from its location (Probably will be in /usr/local/share/arduino/libraries/WiFi/ or
+/usr/share/arduino/libraries/WiF, could be both).  The solution to the issue I found [here](https://github.com/amperka/ino/issues/119)
+
+
+#### Problem with USB
+This problem didn't specifically happen to me but I could see it happening.  If you have problems uploading might be a problem with communication
+with your usb.  Check out a possible solution [here](https://www.arduino.cc/en/Hacking/DFUProgramming8U2)
