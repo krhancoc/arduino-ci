@@ -34,11 +34,9 @@ Log out and log in if you had to do this.
 Inside the bin/ directory is a file called ino.ini, it is here you should edit so it matches the configuration you currently
 have.  Meaning update the model and the serial port.
 
-You can find the serial port by doing the following:  
-1.  Open a terminal with the Arduino chip not connected  
-2.  Type `df` you'll see a list of devices  
-3.  Now connect your device and type `df` again, inspect where it has changed - that will be the arduino device  
-4.  It should follow a pattern like /dev/ttyACM[0-9].  Once you know it. Copy and paste the filesystem column of the chip to where the file says SERIAL\_PORT  
+Serial Port will be something along the lines of /dev/ttyACM[0-9]
+
+
 ## Start-up
 To run type the following from within the directory:
 ```bash
