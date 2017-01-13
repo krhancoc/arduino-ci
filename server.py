@@ -71,8 +71,8 @@ class InoTool():
             self.unlock()
             return False
         else:
-            self.unlock()
             app.logger.info("Integration script run without error")
+            self.unlock()
             return True
 
 
