@@ -92,22 +92,16 @@ def index():
 @app.route('/submit', methods=['POST'])
 def upload_file():
     if request.method == 'POST' and not app.tool.is_locked():
-        if 'ino' not in request.files:
-            app.logger.error("Non ino file attempted to be uploaded")
-            flash('Not and INO file')
-            return redirect(url_for('index'))
-        file = request.files['ino']
-        if file.filename == '':
-            app.logger.error("No filename given")
-            flash('No file given')
-            return redirect(url_for('index'))
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            app.logger.info("File " + filename + " accepted.  Moving through to build and upload")
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        uploaded_file = request.files.get('ino', None)
+        if (uploaded_file is None) or (uploaded_file.filename == ''):
+            flash('No file given or Bad Extension')
+        elif allowed_file(uploaded_file.filename):
+            filename = secure_filename(uploaded_file.filename)
+            app.logger.info('File ' + filename + " accepted.  Moving through to build and upload")
+            uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             app.tool.process(filename)
             flash('Success!')
-            return redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
