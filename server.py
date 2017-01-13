@@ -101,6 +101,8 @@ def upload_file():
             uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             app.tool.process(filename)
             flash('Success!')
+        else:
+            flash('Improper File Extension')
     return redirect(url_for('index'))
 
 
