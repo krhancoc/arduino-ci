@@ -47,11 +47,11 @@ class InoTool():
 
     def lock(self):
         """Locks upload lock"""
-        self.upload_lock = False
+        self.upload_lock = True
 
     def unlock(self):
         """Unlocks upload lock"""
-        self.upload_lock = True
+        self.upload_lock = False
 
     def process(self, filename):
         """Kicks of build and upload process by calling integration.sh within bin/
@@ -66,12 +66,12 @@ class InoTool():
 
         self.lock()
         app.logger.debug("Calling integration.sh script with filename: " + filename)
-        if (subprocess.call("bin/integration.sh " + filename, shell=True) is 0):
+        if (subprocess.call("bin/integration.sh " + filename, shell=True) == 1):
             app.logger.error("Problem Running Integration Script")
             self.unlock()
             return False
         else:
-            app.logger.info("Integration script run without error")
+            app.logger.debug("Integration script run without error")
             self.unlock()
             return True
 
@@ -103,6 +103,8 @@ def upload_file():
             flash('Success!')
         else:
             flash('Improper File Extension')
+    else:
+        flash('Application in use')
     return redirect(url_for('index'))
 
 
