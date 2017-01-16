@@ -94,7 +94,7 @@ def upload_file():
     if request.method == 'POST' and not app.tool.is_locked():
         uploaded_file = request.files.get('ino', None)
         if (uploaded_file is None) or (uploaded_file.filename == ''):
-            flash('No file given or Bad Extension')
+            flash('No file given or No Filename')
         elif allowed_file(uploaded_file.filename):
             filename = secure_filename(uploaded_file.filename)
             app.logger.info('File ' + filename + " accepted.  Moving through to build and upload")
